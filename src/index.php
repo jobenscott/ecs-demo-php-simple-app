@@ -19,11 +19,8 @@
                 <h2>well look at you!</h2>
                 <p>Your PHP application is now running on a container in Amazon ECS.</p>
                 <p>The container is running PHP version <?php echo phpversion(); ?>.</p>
-                <?php
-                        $myfile = fopen("/var/www/my-vol/date", "r") or die("");
-                        echo fread($myfile,filesize("/var/www/my-vol/date"));
-                        fclose($myfile);
-                ?>
+                
+                <h4 id="clock-counter"></h4>
 
             </div>
         </div>
@@ -31,5 +28,17 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
     </body>
+    <script type="text/javascript"> 
+        function display_c(){
+            var refresh=1000; // Refresh rate in milli seconds
+            mytime=setTimeout('display_ct()',refresh)
+        }
 
+        function display_ct() {
+            var my_date = new Date()
+            my_date=my_date.toUTCString();// changing the display to UTC string
+            document.getElementById('clock-counter').innerHTML = my_date;
+            display_c();
+        }
+    </script>
 </html>
